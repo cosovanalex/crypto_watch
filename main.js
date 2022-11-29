@@ -116,77 +116,15 @@ async function getPrice(){
 getPrice()
 
 
+async function SearchforCrypto() {
+    var searchItem = document.getElementById('searchbar').value;
 
-
-
-// function getdata() {
-//     fetch(
-//     'http://api.coinlayer.com/api/live?access_key=146cf87f172105a138efd910632dc5e1'
-//   )
-//     .then((response) => {
-//       const data = response.json();
-//       return data;
-//     })
-//     .then((data) => {
-//         dataStore = data.data;
-//         dataaa.innerHTML = getHTML(data.data);
-//     });
-// }
-
-// function getHTML(data){
-//     return data.map(({slug, symbol, metrics}) => generateHTML(slug, symbol, metrics)).join('');
-// }
-
-// function generateHTML(name, symbol, {market_data: { price_usd }}){
-//     return `<div class="pieceofdata"><h1 class= "symbol"> ${symbol}</h1><h1 class= "name"> ${name}</h1><h1 class= "price"> $${+price_usd.toFixed(2)}</h1>
-//         </div>`;
-// }
-
-// function noResultHTML(){
-//     return `<div class="pieceofdata"><h1 class= "symbol"> </h1><h1 class= "name"></h1> <h1 class="name">No Results Found</h1> <h1 class= "price"></h1>
-//       </div>`;
-// }
-
-// searchbar.addEventListener('keyup', function(e){
-//     const currentword = e.target.value;
-//     const filteredData= dataStore.filter(o => o.slug.includes(currentword));
-//     dataaa.innerHTML = filteredData.length ? getHTML(filteredData) : noResultHTML();
-// });
-
-
-// async function getList(){
-
-//     let request = new Request('http://api.coinlayer.com/api/list?access_key=25870345d6ba4e2275c42b5edb848a6c', {
-//         method: 'GET',
-//     });
-//     let result = await fetch(request);
-//     let response = await result.json();
-//     console.log(response)
-
-//     var lst = document.getElementById("list");
-//     lst.innerHTML = response.list
-// //     var sol = document.getElementById("solana_volume");
-// //     sol.innerHTML = response.rates.SOL.vol
-// //     var sol = document.getElementById("solana_cap");
-// //     sol.innerHTML = response.rates.SOL.cap
-// //     var sol = document.getElementById("solana_sup");
-// //     sol.innerHTML = response.rates.SOL.sup
-// //     // var btc = document.getElementById("bitcoin_volume");
-// //     // btc.innerHTML = response.rates.BTC.vol
-// //     // var btc = document.getElementById("bitcoin_cap");
-// //     // btc.innerHTML = response.rates.BTC.cap
-// //     // var btc = document.getElementById("bitcoin_sup");
-// //     // btc.innerHTML = response.rates.BTC.sup
-
-// //     // var eth = document.getElementById("ethereum_volume");
-// //     // eth.innerHTML = response.rates.ETH.vol
-// //     // var eth = document.getElementById("ethereum_cap");
-// //     // eth.innerHTML = response.rates.ETH.cap
-// //     // var eth = document.getElementById("ethereum_sup");
-// //     // eth.innerHTML = response.rates.ETH.sup
-
-
-
-// }
-
-// getList()
+    let request = new Request(`http://api.coinlayer.com/api/live?access_key=5fb95011be69e0d2c9af25da5a91b6c6&expand=1&symbols=${searchItem}`, {
+        method: 'GET',
+    });
+    let result = await fetch(request);
+    let response = await result.json();
+    console.log(response)
+    var mycrypto = response.rates[`${searchItem}`]
+    console.log(mycrypto)
+}
